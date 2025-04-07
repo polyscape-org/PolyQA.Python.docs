@@ -1,0 +1,21 @@
+PolyQA Python APIドキュメント
+==========================
+
+PolyQA Python APIへようこそ！ このドキュメントは、PolyQAのPythonライブラリの使用方法について説明します。
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 目次:
+
+   modules/polyqa
+   modules/game_object
+   modules/device
+   modules/api
+   modules/context
+
+インデックスとテーブル
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

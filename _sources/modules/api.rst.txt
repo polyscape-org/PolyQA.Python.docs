@@ -1,0 +1,9 @@
+api モジュール
+==========
+
+api モジュールはPolyQA APIとの連携機能を提供します。
+
+.. automodule:: polyqa.api
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,9 @@
+game_object モジュール
+================
+
+game_object モジュールはゲームオブジェクトの操作機能を提供します。
+
+.. automodule:: polyqa.game_object
+   :members:
+   :undoc-members:
+   :show-inheritance:

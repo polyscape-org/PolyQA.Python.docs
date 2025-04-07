@@ -1,0 +1,12 @@
+polyqa パッケージ
+==============
+
+polyqa モジュールはゲームテスト自動化のためのメイン機能を提供します。
+
+主要機能
+-------
+
+.. automodule:: polyqa
+   :members:
+   :undoc-members:
+   :show-inheritance:
