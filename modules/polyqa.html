@@ -58,6 +58,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#polyqa.input_text"><code class="docutils literal notranslate"><span class="pre">input_text()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#polyqa.sleep"><code class="docutils literal notranslate"><span class="pre">sleep()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#polyqa.go"><code class="docutils literal notranslate"><span class="pre">go()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polyqa.comment"><code class="docutils literal notranslate"><span class="pre">comment()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -228,7 +229,7 @@ duration: スワイプの持続時間（秒）</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="polyqa.go">
-<span class="sig-prename descclassname"><span class="pre">polyqa.</span></span><span class="sig-name descname"><span class="pre">go</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa.html#go"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.go" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">polyqa.</span></span><span class="sig-name descname"><span class="pre">go</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="game_object.html#polyqa.game_object.GameObject" title="polyqa.game_object.GameObject"><span class="pre">GameObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/polyqa.html#go"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.go" title="Link to this definition"></a></dt>
 <dd><p>指定された名前のゲームオブジェクトを検索して返します。</p>
 <dl class="field-list simple">
 <dt class="field-odd">パラメータ<span class="colon">:</span></dt>
@@ -239,6 +240,17 @@ duration: スワイプの持続時間（秒）</p>
 </dd>
 <dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="game_object.html#polyqa.game_object.GameObject" title="polyqa.game_object.GameObject">GameObject</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polyqa.comment">
+<span class="sig-prename descclassname"><span class="pre">polyqa.</span></span><span class="sig-name descname"><span class="pre">comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa.html#comment"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.comment" title="Link to this definition"></a></dt>
+<dd><p>指定されたテキストをエージェントのコメントとして表示します。</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>str</em>) -- 表示するコメントテキスト</p>
 </dd>
 </dl>
 </dd></dl>
