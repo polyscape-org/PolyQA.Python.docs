@@ -50,7 +50,19 @@
 <li class="toctree-l1"><a class="reference internal" href="polyqa.html">polyqa パッケージ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="game_object.html">game_object モジュール</a></li>
 <li class="toctree-l1"><a class="reference internal" href="device.html">device モジュール</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">api モジュール</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">api モジュール</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#polyqa.api.Rectangle"><code class="docutils literal notranslate"><span class="pre">Rectangle</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polyqa.api.GameObject"><code class="docutils literal notranslate"><span class="pre">GameObject</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polyqa.api.InteractableGameObjectInfo"><code class="docutils literal notranslate"><span class="pre">InteractableGameObjectInfo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polyqa.api.ScreenshotFrame"><code class="docutils literal notranslate"><span class="pre">ScreenshotFrame</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polyqa.api.ActionLog"><code class="docutils literal notranslate"><span class="pre">ActionLog</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polyqa.api.get_game_objects"><code class="docutils literal notranslate"><span class="pre">get_game_objects()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polyqa.api.get_latest_screenshot"><code class="docutils literal notranslate"><span class="pre">get_latest_screenshot()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polyqa.api.get_screenshot"><code class="docutils literal notranslate"><span class="pre">get_screenshot()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polyqa.api.get_user_id"><code class="docutils literal notranslate"><span class="pre">get_user_id()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polyqa.api.get_action_log"><code class="docutils literal notranslate"><span class="pre">get_action_log()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="context.html">context モジュール</a></li>
 </ul>
 
@@ -81,6 +93,61 @@
   <section id="api">
 <h1>api モジュール<a class="headerlink" href="#api" title="Link to this heading"></a></h1>
 <p>api モジュールはPolyQA APIとの連携機能を提供します。</p>
+<dl class="py class" id="module-polyqa.api">
+<dt class="sig sig-object py" id="polyqa.api.Rectangle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polyqa.api.</span></span><span class="sig-name descname"><span class="pre">Rectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rect</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa/api.html#Rectangle"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.api.Rectangle" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="polyqa.api.GameObject">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polyqa.api.</span></span><span class="sig-name descname"><span class="pre">GameObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">game_object</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa/api.html#GameObject"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.api.GameObject" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="polyqa.api.InteractableGameObjectInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polyqa.api.</span></span><span class="sig-name descname"><span class="pre">InteractableGameObjectInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa/api.html#InteractableGameObjectInfo"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.api.InteractableGameObjectInfo" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="polyqa.api.ScreenshotFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polyqa.api.</span></span><span class="sig-name descname"><span class="pre">ScreenshotFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PIL.Image.Image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa/api.html#ScreenshotFrame"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.api.ScreenshotFrame" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="polyqa.api.ActionLog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">polyqa.api.</span></span><span class="sig-name descname"><span class="pre">ActionLog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa/api.html#ActionLog"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.api.ActionLog" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polyqa.api.get_game_objects">
+<span class="sig-prename descclassname"><span class="pre">polyqa.api.</span></span><span class="sig-name descname"><span class="pre">get_game_objects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#polyqa.api.InteractableGameObjectInfo" title="polyqa.api.InteractableGameObjectInfo"><span class="pre">InteractableGameObjectInfo</span></a></span></span><a class="reference internal" href="../_modules/polyqa/api.html#get_game_objects"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.api.get_game_objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polyqa.api.get_latest_screenshot">
+<span class="sig-prename descclassname"><span class="pre">polyqa.api.</span></span><span class="sig-name descname"><span class="pre">get_latest_screenshot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#polyqa.api.ScreenshotFrame" title="polyqa.api.ScreenshotFrame"><span class="pre">ScreenshotFrame</span></a></span></span><a class="reference internal" href="../_modules/polyqa/api.html#get_latest_screenshot"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.api.get_latest_screenshot" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polyqa.api.get_screenshot">
+<span class="sig-prename descclassname"><span class="pre">polyqa.api.</span></span><span class="sig-name descname"><span class="pre">get_screenshot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PIL.Image.Image</span></span></span><a class="reference internal" href="../_modules/polyqa/api.html#get_screenshot"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.api.get_screenshot" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polyqa.api.get_user_id">
+<span class="sig-prename descclassname"><span class="pre">polyqa.api.</span></span><span class="sig-name descname"><span class="pre">get_user_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/polyqa/api.html#get_user_id"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.api.get_user_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polyqa.api.get_action_log">
+<span class="sig-prename descclassname"><span class="pre">polyqa.api.</span></span><span class="sig-name descname"><span class="pre">get_action_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#polyqa.api.ActionLog" title="polyqa.api.ActionLog"><span class="pre">ActionLog</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/polyqa/api.html#get_action_log"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.api.get_action_log" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </section>
 
 

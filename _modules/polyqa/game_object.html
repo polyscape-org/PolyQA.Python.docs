@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polyqa.game_object &mdash; PolyQA Python API 1.0.0 ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=144c8c96"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/translations.js?v=4dbe4bdc"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            PolyQA Python API
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目次:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/polyqa.html">polyqa パッケージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/game_object.html">game_object モジュール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/device.html">device モジュール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/api.html">api モジュール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/context.html">context モジュール</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PolyQA Python API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">モジュールコード</a></li>
+          <li class="breadcrumb-item"><a href="../polyqa.html">polyqa</a></li>
+      <li class="breadcrumb-item active">polyqa.game_object</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>polyqa.game_object のソースコード</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">polyqa</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">polyqa.process</span><span class="w"> </span><span class="kn">import</span> <span class="n">rpc</span>
+
+
+<div class="viewcode-block" id="GameObject">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject">[ドキュメント]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">GameObject</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ゲームオブジェクトのラッパークラス。</span>
+<span class="sd">    Unity のゲームオブジェクトに対する操作を提供します。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="GameObject.__init__">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.__init__">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance_id</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        GameObject クラスの初期化。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            instance_id: ネイティブのゲームオブジェクト</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">instance_id</span></div>
+
+
+<div class="viewcode-block" id="GameObject.__del__">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.__del__">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        オブジェクトが破棄されるときに呼ばれるデストラクタ。</span>
+<span class="sd">        メモリリークを防ぐためにネイティブオブジェクトを破棄します。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;ReleaseGameObjectReference&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GameObject.find">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.find">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;GameObject&#39;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        現在のゲームオブジェクト内で指定された名前またはパターンに一致する最初のゲームオブジェクトを検索します。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str, optional): 検索するゲームオブジェクトの名前</span>
+<span class="sd">            pattern (str, optional): 検索するゲームオブジェクトの正規表現パターン</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: 見つかったゲームオブジェクト。見つからない場合はNone。</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: nameもpatternも指定されていない場合</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;FindGameObject&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">pattern</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;MatchGameObject&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;name or pattern must be specified&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">instance_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">GameObject</span><span class="p">(</span><span class="n">instance_id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GameObject.find_child">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.find_child">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;GameObject&#39;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        現在のゲームオブジェクト内で指定された名前またはパターンに一致する最初の子ゲームオブジェクトを検索します。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str, optional): 検索するゲームオブジェクトの名前</span>
+<span class="sd">            pattern (str, optional): 検索するゲームオブジェクトの正規表現パターン</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            GameObject: 見つかったゲームオブジェクト。見つからない場合はNone。</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: nameもpatternも指定されていない場合</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;FindChildGameObject&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">pattern</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;MatchChildGameObject&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;name or pattern must be specified&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">instance_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">GameObject</span><span class="p">(</span><span class="n">instance_id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GameObject.find_all">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.find_all">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="s1">&#39;GameObject&#39;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        現在のゲームオブジェクト内で指定された名前またはパターンに一致するすべてのゲームオブジェクトを検索します。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str, optional): 検索するゲームオブジェクトの名前</span>
+<span class="sd">            pattern (str, optional): 検索するゲームオブジェクトの正規表現パターン</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[GameObject]: 見つかったゲームオブジェクトのリスト</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: nameもpatternも指定されていない場合</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;FindGameObjects&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">pattern</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;MatchGameObjects&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;name or pattern must be specified&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">GameObject</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="GameObject.find_all_children">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.find_all_children">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_children</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="s1">&#39;GameObject&#39;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        現在のゲームオブジェクト内で指定された名前またはパターンに一致するすべての子ゲームオブジェクトを検索します。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str, optional): 検索するゲームオブジェクトの名前</span>
+<span class="sd">            pattern (str, optional): 検索するゲームオブジェクトの正規表現パターン</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[GameObject]: 見つかったゲームオブジェクトのリスト</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: nameもpatternも指定されていない場合</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;FindChildGameObjects&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">pattern</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;MatchChildrenGameObjects&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;name or pattern must be specified&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">GameObject</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="GameObject.path">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.path">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ゲームオブジェクトのパスを取得します。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: ゲームオブジェクトのパス</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectPath&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GameObject.is_active">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.is_active">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_active</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ゲームオブジェクトがアクティブかどうかを確認します。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: アクティブであればTrue、そうでなければFalse</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;IsGameObjectActive&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GameObject.text">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.text">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ゲームオブジェクトのテキストを取得します。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: ゲームオブジェクトに関連付けられたテキスト</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectText&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GameObject.input_text">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.input_text">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">input_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ゲームオブジェクトにテキストを入力します。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            text (str): 入力するテキスト</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">polyqa</span><span class="o">.</span><span class="n">input_text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">(),</span> <span class="n">text</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GameObject.image_name">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.image_name">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">image_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ゲームオブジェクトの画像名を取得します。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: ゲームオブジェクトに関連付けられた画像名</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectImageName&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GameObject.checkbox">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.checkbox">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">checkbox</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ゲームオブジェクトのチェックボックスの値を取得します。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: チェックボックスがオンであればTrue、オフであればFalse</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectCheckboxValue&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GameObject.tap">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.tap">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ゲームオブジェクトをタップします。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectScreenPosition&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">polyqa</span><span class="o">.</span><span class="n">tap</span><span class="p">((</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GameObject.swipe">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.swipe">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">swipe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ゲームオブジェクトから開始するスワイプを実行します。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            **kwargs: スワイプのオプションパラメータ（方向ベクトルなど）</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectScreenPosition&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">polyqa</span><span class="o">.</span><span class="n">swipe</span><span class="p">((</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GameObject.screen_position">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.screen_position">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">screen_position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ゲームオブジェクトの画面上の座標を取得します。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple[float, float]: 画面上の(x, y)座標</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectScreenPosition&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;screen_position: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span></div>
+</div>
+
+
+<div class="viewcode-block" id="find">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.find">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">GameObject</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    指定された名前のゲームオブジェクトを検索します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        name (str): 検索するゲームオブジェクトの名前</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        GameObject: 見つかったゲームオブジェクト。見つからない場合はNone。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;FindGameObject&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">instance_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">GameObject</span><span class="p">(</span><span class="n">instance_id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_all">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.find_all">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_all</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">GameObject</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    指定された名前のすべてのゲームオブジェクトを検索します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        name (str): 検索するゲームオブジェクトの名前</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[GameObject]: 見つかったゲームオブジェクトのリスト</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;FindGameObjects&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">GameObject</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">]</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Polyscape.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

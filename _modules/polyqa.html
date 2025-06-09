@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polyqa &mdash; PolyQA Python API 1.0.0 ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=144c8c96"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=4dbe4bdc"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PolyQA Python API
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目次:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/polyqa.html">polyqa パッケージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/game_object.html">game_object モジュール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/device.html">device モジュール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/api.html">api モジュール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/context.html">context モジュール</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PolyQA Python API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">モジュールコード</a></li>
+      <li class="breadcrumb-item active">polyqa</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>polyqa のソースコード</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">polyqa</span><span class="w"> </span><span class="kn">import</span> <span class="n">game_object</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">polyqa.context</span><span class="w"> </span><span class="kn">import</span> <span class="n">Context</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">polyqa.game_object</span><span class="w"> </span><span class="kn">import</span> <span class="n">GameObject</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">polyqa.process</span><span class="w"> </span><span class="kn">import</span> <span class="n">rpc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">polyqa.process.rpc</span><span class="w"> </span><span class="kn">import</span> <span class="n">RPCError</span><span class="p">,</span> <span class="n">RPCErrorCode</span>
+
+<div class="viewcode-block" id="log">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.log">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    情報メッセージをログに記録します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        message (str): ログに記録するメッセージ</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;LogInformation&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="debug_log">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.debug_log">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">debug_log</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    デバッグメッセージをログに記録します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        message (str): ログに記録するデバッグメッセージ</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;LogDebug&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="warn_log">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.warn_log">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">warn_log</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    警告メッセージをログに記録します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        message (str): ログに記録する警告メッセージ</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;LogWarning&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="error_log">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.error_log">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">error_log</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    エラーメッセージをログに記録します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        message (str): ログに記録するエラーメッセージ</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;LogError&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="tap">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.tap">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">tap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    画面上の指定された位置またはゲームオブジェクトをタップします。</span>
+
+<span class="sd">    使用例:</span>
+<span class="sd">    tap(path: str, duration: float=0.0)</span>
+<span class="sd">    path: ゲームオブジェクトのパス</span>
+<span class="sd">    duration: タップの持続時間（秒）</span>
+
+<span class="sd">    tap(pos: tuple[float, float], duration: float=0.0)</span>
+<span class="sd">    pos: 画面上の座標</span>
+<span class="sd">    duration: タップの持続時間（秒）</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        v: ゲームオブジェクトのパス文字列または座標タプル(x, y)</span>
+<span class="sd">        **kwargs: 追加のパラメータ（duration など）</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Context</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">tap</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="swipe">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.swipe">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">swipe</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    画面上の2つの指定位置間またはゲームオブジェクト間でスワイプします。</span>
+
+<span class="sd">    使用例:</span>
+<span class="sd">    swipe(path1: str, path2: str, duration: float=0.0)</span>
+<span class="sd">    path1: 最初のゲームオブジェクトのパス</span>
+<span class="sd">    path2: 2番目のゲームオブジェクトのパス</span>
+<span class="sd">    duration: スワイプの持続時間（秒）</span>
+
+<span class="sd">    swipe(path1: str, pos2: tuple[float, float], duration: float=0.0)</span>
+<span class="sd">    path1: 最初のゲームオブジェクトのパス</span>
+<span class="sd">    pos2: 2番目の位置座標</span>
+<span class="sd">    duration: スワイプの持続時間（秒）</span>
+
+<span class="sd">    swipe(path1: str, vector: tuple[float, float], duration: float=0.0)</span>
+<span class="sd">    path1: 最初のゲームオブジェクトのパス</span>
+<span class="sd">    vector: スワイプの方向ベクトル</span>
+<span class="sd">    duration: スワイプの持続時間（秒）</span>
+
+<span class="sd">    swipe(pos1: tuple[float, float], pos2: tuple[float, float], duration: float=0.0)</span>
+<span class="sd">    pos1: 開始位置の座標</span>
+<span class="sd">    pos2: 終了位置の座標</span>
+<span class="sd">    duration: スワイプの持続時間（秒）</span>
+
+<span class="sd">    swipe(pos1: tuple[float, float], vector: tuple[float, float], duration: float=0.0)</span>
+<span class="sd">    pos1: 開始位置の座標</span>
+<span class="sd">    vector: スワイプの方向ベクトル</span>
+<span class="sd">    duration: スワイプの持続時間（秒）</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        v1: 開始位置（ゲームオブジェクトのパスまたは座標タプル）</span>
+<span class="sd">        v2: 終了位置または方向ベクトル（デフォルト: None）</span>
+<span class="sd">        **kwargs: 追加のパラメータ（duration など）</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Context</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">swipe</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="input_text">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.input_text">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">input_text</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    指定されたゲームオブジェクトにテキストを入力します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path (str): テキストを入力するゲームオブジェクトのパス</span>
+<span class="sd">        text (str): 入力するテキスト</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Context</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">input_text</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="sleep">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.sleep">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sleep</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span> <span class="n">check_interval</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    指定された秒数だけ実行を一時停止します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        seconds (float): 停止する秒数</span>
+<span class="sd">        check_interval (float, optional): チェック間隔（秒）。デフォルトは0.1秒。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">remaining</span> <span class="o">=</span> <span class="n">seconds</span>
+    <span class="k">while</span> <span class="n">remaining</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">sleep_time</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">remaining</span><span class="p">,</span> <span class="n">check_interval</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>
+        <span class="n">remaining</span> <span class="o">=</span> <span class="n">seconds</span> <span class="o">-</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="go">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.go">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">go</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">GameObject</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    指定された名前のゲームオブジェクトを検索して返します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        name (str): 検索するゲームオブジェクトの名前</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        GameObject: 見つかったゲームオブジェクト。見つからない場合はNone。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">game_object</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="gos">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.gos">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">gos</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">GameObject</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    指定された名前のゲームオブジェクトをすべて検索してリストで返します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        name (str): 検索するゲームオブジェクトの名前</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[GameObject]: 見つかったゲームオブジェクトのリスト。見つからない場合は空のリスト。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">game_object</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="comment">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.comment">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">comment</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    指定されたテキストをエージェントのコメントとして表示します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text (str): 表示するコメントテキスト</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;Comment&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">RPCError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="n">RPCErrorCode</span><span class="o">.</span><span class="n">MethodNotFound</span><span class="p">:</span>
+            <span class="n">error_log</span><span class="p">(</span><span class="s1">&#39;Comment is not supported in this agent&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">e</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Polyscape.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
