@@ -83,36 +83,39 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">polyqa</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">polyqa.process</span><span class="w"> </span><span class="kn">import</span> <span class="n">rpc</span>
 
-
-<div class="viewcode-block" id="GameObject">
-<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject">[ドキュメント]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">GameObject</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    ゲームオブジェクトのラッパークラス。</span>
-<span class="sd">    Unity のゲームオブジェクトに対する操作を提供します。</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-<div class="viewcode-block" id="GameObject.__init__">
-<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.__init__">[ドキュメント]</a>
+<div class="viewcode-block" id="UnityObject">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.UnityObject">[ドキュメント]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">UnityObject</span><span class="p">:</span>
+<div class="viewcode-block" id="UnityObject.__init__">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.UnityObject.__init__">[ドキュメント]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance_id</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        GameObject クラスの初期化。</span>
+<span class="sd">        UnityObject クラスの初期化。</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            instance_id: ネイティブのゲームオブジェクト</span>
+<span class="sd">            instance_id: ネイティブの Unity オブジェクト</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">instance_id</span></div>
 
 
-<div class="viewcode-block" id="GameObject.__del__">
-<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.__del__">[ドキュメント]</a>
+<div class="viewcode-block" id="UnityObject.__del__">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.UnityObject.__del__">[ドキュメント]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        オブジェクトが破棄されるときに呼ばれるデストラクタ。</span>
 <span class="sd">        メモリリークを防ぐためにネイティブオブジェクトを破棄します。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;ReleaseGameObjectReference&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+        <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;ReleaseObjectReference&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+</div>
 
+
+<div class="viewcode-block" id="GameObject">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject">[ドキュメント]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">GameObject</span><span class="p">(</span><span class="n">UnityObject</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ゲームオブジェクトのラッパークラス。</span>
+<span class="sd">    Unity のゲームオブジェクトに対する操作を提供します。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="GameObject.find">
 <a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.find">[ドキュメント]</a>
@@ -218,9 +221,18 @@
         <span class="k">return</span> <span class="p">[</span><span class="n">GameObject</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">]</span></div>
 
 
+<div class="viewcode-block" id="GameObject.get_component">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.get_component">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component_class</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Component&#39;</span><span class="p">]:</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetComponent&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">component_class</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">Component</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="GameObject.path">
 <a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.path">[ドキュメント]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ゲームオブジェクトのパスを取得します。</span>
 
@@ -232,7 +244,7 @@
 
 <div class="viewcode-block" id="GameObject.is_active">
 <a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.is_active">[ドキュメント]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">is_active</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_active</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ゲームオブジェクトがアクティブかどうかを確認します。</span>
 
@@ -244,7 +256,7 @@
 
 <div class="viewcode-block" id="GameObject.text">
 <a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.text">[ドキュメント]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ゲームオブジェクトのテキストを取得します。</span>
 
@@ -268,7 +280,7 @@
 
 <div class="viewcode-block" id="GameObject.image_name">
 <a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.image_name">[ドキュメント]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">image_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">image_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ゲームオブジェクトの画像名を取得します。</span>
 
@@ -280,7 +292,7 @@
 
 <div class="viewcode-block" id="GameObject.checkbox">
 <a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.checkbox">[ドキュメント]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">checkbox</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">checkbox</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ゲームオブジェクトのチェックボックスの値を取得します。</span>
 
@@ -323,10 +335,61 @@
 <span class="sd">            tuple[float, float]: 画面上の(x, y)座標</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">v</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectScreenPosition&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;screen_position: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span></div>
 </div>
+
+
+<div class="viewcode-block" id="Component">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.Component">[ドキュメント]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Component</span><span class="p">(</span><span class="n">UnityObject</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Unity のコンポーネントを表すクラス。</span>
+<span class="sd">    ゲームオブジェクトにアタッチされているコンポーネントに対する操作を提供します。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Component.is_enabled">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.Component.is_enabled">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        コンポーネントが有効かどうかを確認します。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: コンポーネントが有効であればTrue、無効であればFalse</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;IsEnabledComponent&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Component.__getattr__">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.Component.__getattr__">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        コンポーネントのプロパティにアクセスするためのメソッド。</span>
+<span class="sd">        プロパティ名を指定して、その値を取得します。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            item (str): 取得するプロパティの名前</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: プロパティの値</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_property_value</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Component.get_property_value">
+<a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.Component.get_property_value">[ドキュメント]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_property_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">property_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        コンポーネントのプロパティの値を取得します。</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            property_name (str): 取得するプロパティの名前</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: プロパティの値</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetComponentValue&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">property_name</span><span class="p">)</span></div>
+</div>
+
 
 
 <div class="viewcode-block" id="find">

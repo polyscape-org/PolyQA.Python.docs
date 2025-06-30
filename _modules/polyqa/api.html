@@ -99,9 +99,10 @@
 <div class="viewcode-block" id="GameObject">
 <a class="viewcode-back" href="../../modules/api.html#polyqa.api.GameObject">[ドキュメント]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">GameObject</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">game_object</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">no</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">game_object</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">no</span> <span class="o">=</span> <span class="n">no</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">game_object</span><span class="p">[</span><span class="s1">&#39;Path&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">game_object</span><span class="p">[</span><span class="s1">&#39;Label&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_object</span><span class="p">[</span><span class="s1">&#39;ClassNames&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rect</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">game_object</span><span class="p">[</span><span class="s1">&#39;Rect&#39;</span><span class="p">])</span></div>
 
