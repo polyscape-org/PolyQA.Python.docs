@@ -273,6 +273,18 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span></div>
 
+
+<div class="viewcode-block" id="call_command">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.call_command">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">call_command</span><span class="p">(</span><span class="n">command_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    指定された名前のゲーム内コマンドを実行します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        command_name (str): 実行するコマンドの名前</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;ExecuteCommand&#39;</span><span class="p">,</span> <span class="n">command_name</span><span class="p">)</span></div>
+
 </pre></div>
 
            </div>

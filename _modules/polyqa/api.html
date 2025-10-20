@@ -173,6 +173,14 @@
     <span class="n">actions</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetActionLog&#39;</span><span class="p">,</span> <span class="n">start_time</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">ActionLog</span><span class="p">(</span><span class="n">action</span><span class="p">)</span> <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">actions</span><span class="p">]</span></div>
 
+
+<div class="viewcode-block" id="get_available_commands">
+<a class="viewcode-back" href="../../modules/api.html#polyqa.api.get_available_commands">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_available_commands</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get list of available in-game commands&quot;&quot;&quot;</span>
+    <span class="n">commands</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetAvailableCommands&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">commands</span> <span class="k">if</span> <span class="n">commands</span> <span class="k">else</span> <span class="p">[]</span></div>
+
 </pre></div>
 
            </div>
