@@ -1,0 +1,9 @@
+device モジュール
+============
+
+device モジュールはデバイス操作機能を提供します。
+
+.. automodule:: polyqa.device
+   :members:
+   :undoc-members:
+   :show-inheritance:

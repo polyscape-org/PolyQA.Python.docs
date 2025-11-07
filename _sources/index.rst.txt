@@ -9,8 +9,9 @@ PolyQA Python APIへようこそ！ このドキュメントは、PolyQAのPytho
 
    modules/polyqa
    modules/game_object
-   modules/logging
+   modules/device
    modules/api
+   modules/context
 
 インデックスとテーブル
 ==================

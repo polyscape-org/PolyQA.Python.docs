@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" data-content_root="../">
 <head>
@@ -8,15 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>polyqa パッケージ &mdash; PolyQA Python API 1.0.0 ドキュメント</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=144c8c96"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../_static/translations.js?v=4755f45a"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=144c8c96"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=4dbe4bdc"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
@@ -46,20 +48,27 @@
               <p class="caption" role="heading"><span class="caption-text">目次:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">polyqa パッケージ</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#polyqa.tap"><code class="docutils literal notranslate"><span class="pre">tap()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#polyqa.swipe"><code class="docutils literal notranslate"><span class="pre">swipe()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#polyqa.input_text"><code class="docutils literal notranslate"><span class="pre">input_text()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#polyqa.sleep"><code class="docutils literal notranslate"><span class="pre">sleep()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#polyqa.go"><code class="docutils literal notranslate"><span class="pre">go()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#polyqa.gos"><code class="docutils literal notranslate"><span class="pre">gos()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#polyqa.comment"><code class="docutils literal notranslate"><span class="pre">comment()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#polyqa.call_command"><code class="docutils literal notranslate"><span class="pre">call_command()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#polyqa.ask"><code class="docutils literal notranslate"><span class="pre">ask()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">主要機能</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#polyqa.log"><code class="docutils literal notranslate"><span class="pre">log()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polyqa.debug_log"><code class="docutils literal notranslate"><span class="pre">debug_log()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polyqa.warn_log"><code class="docutils literal notranslate"><span class="pre">warn_log()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polyqa.error_log"><code class="docutils literal notranslate"><span class="pre">error_log()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polyqa.tap"><code class="docutils literal notranslate"><span class="pre">tap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polyqa.swipe"><code class="docutils literal notranslate"><span class="pre">swipe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polyqa.input_text"><code class="docutils literal notranslate"><span class="pre">input_text()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polyqa.sleep"><code class="docutils literal notranslate"><span class="pre">sleep()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polyqa.go"><code class="docutils literal notranslate"><span class="pre">go()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polyqa.gos"><code class="docutils literal notranslate"><span class="pre">gos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polyqa.comment"><code class="docutils literal notranslate"><span class="pre">comment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polyqa.call_command"><code class="docutils literal notranslate"><span class="pre">call_command()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="game_object.html">game_object モジュール</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logging.html">logging モジュール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="device.html">device モジュール</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">api モジュール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context.html">context モジュール</a></li>
 </ul>
 
         </div>
@@ -89,7 +98,53 @@
   <section id="polyqa">
 <h1>polyqa パッケージ<a class="headerlink" href="#polyqa" title="Link to this heading"></a></h1>
 <p>polyqa モジュールはゲームテスト自動化のためのメイン機能を提供します。</p>
+<section id="id1">
+<h2>主要機能<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <dl class="py function" id="module-polyqa">
+<dt class="sig sig-object py" id="polyqa.log">
+<span class="sig-prename descclassname"><span class="pre">polyqa.</span></span><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa.html#log"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.log" title="Link to this definition"></a></dt>
+<dd><p>情報メッセージをログに記録します。</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> (<em>str</em>) -- ログに記録するメッセージ</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polyqa.debug_log">
+<span class="sig-prename descclassname"><span class="pre">polyqa.</span></span><span class="sig-name descname"><span class="pre">debug_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa.html#debug_log"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.debug_log" title="Link to this definition"></a></dt>
+<dd><p>デバッグメッセージをログに記録します。</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> (<em>str</em>) -- ログに記録するデバッグメッセージ</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polyqa.warn_log">
+<span class="sig-prename descclassname"><span class="pre">polyqa.</span></span><span class="sig-name descname"><span class="pre">warn_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa.html#warn_log"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.warn_log" title="Link to this definition"></a></dt>
+<dd><p>警告メッセージをログに記録します。</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> (<em>str</em>) -- ログに記録する警告メッセージ</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polyqa.error_log">
+<span class="sig-prename descclassname"><span class="pre">polyqa.</span></span><span class="sig-name descname"><span class="pre">error_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa.html#error_log"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.error_log" title="Link to this definition"></a></dt>
+<dd><p>エラーメッセージをログに記録します。</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> (<em>str</em>) -- ログに記録するエラーメッセージ</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="polyqa.tap">
 <span class="sig-prename descclassname"><span class="pre">polyqa.</span></span><span class="sig-name descname"><span class="pre">tap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa.html#tap"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.tap" title="Link to this definition"></a></dt>
 <dd><p>画面上の指定された位置またはゲームオブジェクトをタップします。</p>
@@ -230,26 +285,7 @@ duration: スワイプの持続時間（秒）</p>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="polyqa.ask">
-<span class="sig-prename descclassname"><span class="pre">polyqa.</span></span><span class="sig-name descname"><span class="pre">ask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">question</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">answer_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'str'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/polyqa.html#ask"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.ask" title="Link to this definition"></a></dt>
-<dd><p>指定された質問と現在のゲームのスクリーンショットをエージェントに投げかけ、回答を取得します。</p>
-<dl class="field-list simple">
-<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>question</strong> (<em>str</em>) -- 質問テキスト</p></li>
-<li><p><strong>answer_type</strong> (<em>str</em><em>, </em><em>optional</em>) -- 期待される回答の型（'str', 'int', 'bool'）。デフォルトは'str'。</p></li>
-</ul>
-</dd>
-<dt class="field-even">戻り値<span class="colon">:</span></dt>
-<dd class="field-even"><p>エージェントからの回答</p>
-</dd>
-<dt class="field-odd">戻り値の型<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str|int|bool</p>
-</dd>
-</dl>
-</dd></dl>
-
+</section>
 </section>
 
 
