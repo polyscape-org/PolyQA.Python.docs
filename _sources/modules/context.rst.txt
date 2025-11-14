@@ -1,9 +1,0 @@
-context モジュール
-==============
-
-context モジュールはアプリケーション全体で共有されるコンテキストを提供します。
-
-.. automodule:: polyqa.context
-   :members:
-   :undoc-members:
-   :show-inheritance:

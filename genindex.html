@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="ja" data-content_root="./">
 <head>
@@ -5,19 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>索引 &mdash; PolyQA Python API 1.0.0 ドキュメント</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=144c8c96"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script src="_static/translations.js?v=4dbe4bdc"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=144c8c96"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=4755f45a"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="索引" href="#" />
     <link rel="search" title="検索" href="search.html" /> 
@@ -46,9 +44,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="modules/polyqa.html">polyqa パッケージ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/game_object.html">game_object モジュール</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/device.html">device モジュール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/logging.html">logging モジュール</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/api.html">api モジュール</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/context.html">context モジュール</a></li>
 </ul>
 
         </div>
@@ -116,6 +113,10 @@
       <li><a href="modules/api.html#polyqa.api.ActionLog">ActionLog (polyqa.api のクラス)</a>
 </li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/polyqa.html#polyqa.ask">ask() (polyqa モジュール)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="C">C</h2>
@@ -125,15 +126,11 @@
 </li>
       <li><a href="modules/game_object.html#polyqa.game_object.GameObject.checkbox">checkbox() (polyqa.game_object.GameObject のメソッド)</a>
 </li>
-      <li><a href="modules/polyqa.html#polyqa.comment">comment() (polyqa モジュール)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/polyqa.html#polyqa.comment">comment() (polyqa モジュール)</a>
+</li>
       <li><a href="modules/game_object.html#polyqa.game_object.Component">Component (polyqa.game_object のクラス)</a>
-</li>
-      <li><a href="modules/context.html#polyqa.context.Context.console">console (polyqa.context.Context の属性)</a>
-</li>
-      <li><a href="modules/context.html#polyqa.context.Context">Context (polyqa.context のクラス)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -141,13 +138,7 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/polyqa.html#polyqa.debug_log">debug_log() (polyqa モジュール)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/context.html#polyqa.context.Context.delegate">delegate (polyqa.context.Context の属性)</a>
-</li>
-      <li><a href="modules/context.html#polyqa.context.Context.device">device (polyqa.context.Context の属性)</a>
+      <li><a href="modules/logging.html#polyqa.logging.debug_log">debug_log() (polyqa.logging モジュール)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -155,7 +146,7 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/polyqa.html#polyqa.error_log">error_log() (polyqa モジュール)</a>
+      <li><a href="modules/logging.html#polyqa.logging.error_log">error_log() (polyqa.logging モジュール)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -221,15 +212,11 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/device.html#polyqa.device.IDevice">IDevice (polyqa.device のクラス)</a>
-</li>
       <li><a href="modules/game_object.html#polyqa.game_object.GameObject.image_name">image_name() (polyqa.game_object.GameObject のメソッド)</a>
 </li>
       <li><a href="modules/polyqa.html#polyqa.input_text">input_text() (polyqa モジュール)</a>
 
       <ul>
-        <li><a href="modules/device.html#polyqa.device.IDevice.input_text">(polyqa.device.IDevice のメソッド)</a>
-</li>
         <li><a href="modules/game_object.html#polyqa.game_object.GameObject.input_text">(polyqa.game_object.GameObject のメソッド)</a>
 </li>
       </ul></li>
@@ -247,7 +234,7 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/polyqa.html#polyqa.log">log() (polyqa モジュール)</a>
+      <li><a href="modules/logging.html#polyqa.logging.log">log() (polyqa.logging モジュール)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -263,11 +250,9 @@
 </li>
         <li><a href="modules/api.html#module-polyqa.api">polyqa.api</a>
 </li>
-        <li><a href="modules/context.html#module-polyqa.context">polyqa.context</a>
-</li>
-        <li><a href="modules/device.html#module-polyqa.device">polyqa.device</a>
-</li>
         <li><a href="modules/game_object.html#module-polyqa.game_object">polyqa.game_object</a>
+</li>
+        <li><a href="modules/logging.html#module-polyqa.logging">polyqa.logging</a>
 </li>
       </ul></li>
   </ul></td>
@@ -295,24 +280,17 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    polyqa.context
-
-      <ul>
-        <li><a href="modules/context.html#module-polyqa.context">module</a>
-</li>
-      </ul></li>
-      <li>
-    polyqa.device
-
-      <ul>
-        <li><a href="modules/device.html#module-polyqa.device">module</a>
-</li>
-      </ul></li>
-      <li>
     polyqa.game_object
 
       <ul>
         <li><a href="modules/game_object.html#module-polyqa.game_object">module</a>
+</li>
+      </ul></li>
+      <li>
+    polyqa.logging
+
+      <ul>
+        <li><a href="modules/logging.html#module-polyqa.logging">module</a>
 </li>
       </ul></li>
   </ul></td>
@@ -333,10 +311,6 @@
 </li>
       <li><a href="modules/api.html#polyqa.api.ScreenshotFrame">ScreenshotFrame (polyqa.api のクラス)</a>
 </li>
-      <li><a href="modules/device.html#polyqa.device.IDevice.shutdown">shutdown() (polyqa.device.IDevice のメソッド)</a>
-</li>
-      <li><a href="modules/context.html#polyqa.context.Context.skill">skill (polyqa.context.Context の属性)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/polyqa.html#polyqa.sleep">sleep() (polyqa モジュール)</a>
@@ -344,8 +318,6 @@
       <li><a href="modules/polyqa.html#polyqa.swipe">swipe() (polyqa モジュール)</a>
 
       <ul>
-        <li><a href="modules/device.html#polyqa.device.IDevice.swipe">(polyqa.device.IDevice のメソッド)</a>
-</li>
         <li><a href="modules/game_object.html#polyqa.game_object.GameObject.swipe">(polyqa.game_object.GameObject のメソッド)</a>
 </li>
       </ul></li>
@@ -358,8 +330,6 @@
       <li><a href="modules/polyqa.html#polyqa.tap">tap() (polyqa モジュール)</a>
 
       <ul>
-        <li><a href="modules/device.html#polyqa.device.IDevice.tap">(polyqa.device.IDevice のメソッド)</a>
-</li>
         <li><a href="modules/game_object.html#polyqa.game_object.GameObject.tap">(polyqa.game_object.GameObject のメソッド)</a>
 </li>
       </ul></li>
@@ -381,7 +351,7 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/polyqa.html#polyqa.warn_log">warn_log() (polyqa モジュール)</a>
+      <li><a href="modules/logging.html#polyqa.logging.warn_log">warn_log() (polyqa.logging モジュール)</a>
 </li>
   </ul></td>
 </tr></table>
