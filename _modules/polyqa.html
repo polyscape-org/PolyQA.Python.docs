@@ -74,6 +74,7 @@
              
   <h1>polyqa のソースコード</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">polyqa</span><span class="w"> </span><span class="kn">import</span> <span class="n">game_object</span>
@@ -251,6 +252,50 @@
 <span class="sd">        str|int|bool: エージェントからの回答</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">respondent</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">answer_type</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="set_timeout_override">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.set_timeout_override">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">set_timeout_override</span><span class="p">(</span><span class="n">timeout_seconds</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    オートプレイのタイムアウトを指定された秒数に上書きします。</span>
+<span class="sd">    Args:</span>
+<span class="sd">        timeout_seconds (int): タイムアウト秒数</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;SetTimeoutOverride&#39;</span><span class="p">,</span> <span class="n">timeout_seconds</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="clear_timeout_override">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.clear_timeout_override">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">clear_timeout_override</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    オートプレイのタイムアウト上書きをクリアし、デフォルト設定に戻します。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;ClearTimeoutOverride&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="timeout_override">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.timeout_override">[ドキュメント]</a>
+<span class="nd">@contextmanager</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">timeout_override</span><span class="p">(</span><span class="n">timeout_seconds</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    オートプレイのタイムアウトを一時的に上書きします。</span>
+<span class="sd">    withブロックを抜けると自動的にタイムアウトがクリアされます。</span>
+
+<span class="sd">    使用例:</span>
+<span class="sd">    with timeout_override(30):</span>
+<span class="sd">        # ここでタイムアウトが30秒に設定される</span>
+<span class="sd">        tap(&quot;button&quot;)</span>
+<span class="sd">    # withブロックを抜けると自動的にタイムアウトがクリアされる</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        timeout_seconds (int): タイムアウト秒数</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">set_timeout_override</span><span class="p">(</span><span class="n">timeout_seconds</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">clear_timeout_override</span><span class="p">()</span></div>
 
 </pre></div>
 
