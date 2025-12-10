@@ -58,6 +58,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#polyqa.set_timeout_override"><code class="docutils literal notranslate"><span class="pre">set_timeout_override()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#polyqa.clear_timeout_override"><code class="docutils literal notranslate"><span class="pre">clear_timeout_override()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#polyqa.timeout_override"><code class="docutils literal notranslate"><span class="pre">timeout_override()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polyqa.get_scenario_parameter_value"><code class="docutils literal notranslate"><span class="pre">get_scenario_parameter_value()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polyqa.get_scenario_parameters"><code class="docutils literal notranslate"><span class="pre">get_scenario_parameters()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="game_object.html">game_object モジュール</a></li>
@@ -282,6 +284,34 @@ tap(&quot;button&quot;)</p>
 <dl class="field-list simple">
 <dt class="field-odd">パラメータ<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>timeout_seconds</strong> (<em>int</em>) -- タイムアウト秒数</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polyqa.get_scenario_parameter_value">
+<span class="sig-prename descclassname"><span class="pre">polyqa.</span></span><span class="sig-name descname"><span class="pre">get_scenario_parameter_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa.html#get_scenario_parameter_value"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.get_scenario_parameter_value" title="Link to this definition"></a></dt>
+<dd><p>AutoPlayシナリオの引数を取得します。</p>
+<dl class="field-list simple">
+<dt class="field-odd">パラメータ<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> -- 引数名</p></li>
+<li><p><strong>default</strong> -- 引数が存在しない場合のデフォルト値</p></li>
+</ul>
+</dd>
+<dt class="field-even">戻り値<span class="colon">:</span></dt>
+<dd class="field-even"><p>引数の値、または存在しない場合はdefault</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="polyqa.get_scenario_parameters">
+<span class="sig-prename descclassname"><span class="pre">polyqa.</span></span><span class="sig-name descname"><span class="pre">get_scenario_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa.html#get_scenario_parameters"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.get_scenario_parameters" title="Link to this definition"></a></dt>
+<dd><p>すべてのAutoPlayシナリオの引数を辞書として取得します。</p>
+<dl class="field-list simple">
+<dt class="field-odd">戻り値<span class="colon">:</span></dt>
+<dd class="field-odd"><p>引数の辞書</p>
 </dd>
 </dl>
 </dd></dl>

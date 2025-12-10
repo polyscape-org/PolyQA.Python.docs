@@ -297,6 +297,34 @@
     <span class="k">finally</span><span class="p">:</span>
         <span class="n">clear_timeout_override</span><span class="p">()</span></div>
 
+
+<div class="viewcode-block" id="get_scenario_parameter_value">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.get_scenario_parameter_value">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_scenario_parameter_value</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    AutoPlayシナリオの引数を取得します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        name: 引数名</span>
+<span class="sd">        default: 引数が存在しない場合のデフォルト値</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        引数の値、または存在しない場合はdefault</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Context</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_scenario_parameters">
+<a class="viewcode-back" href="../modules/polyqa.html#polyqa.get_scenario_parameters">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_scenario_parameters</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    すべてのAutoPlayシナリオの引数を辞書として取得します。</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        引数の辞書</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Context</span><span class="o">.</span><span class="n">parameters</span></div>
+
 </pre></div>
 
            </div>
