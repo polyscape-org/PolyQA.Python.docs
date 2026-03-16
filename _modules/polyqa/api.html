@@ -131,6 +131,12 @@
 <div class="viewcode-block" id="get_game_objects">
 <a class="viewcode-back" href="../../modules/api.html#polyqa.api.get_game_objects">[ドキュメント]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_game_objects</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">InteractableGameObjectInfo</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    インタラクト可能なゲームオブジェクトの一覧を取得します。</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        InteractableGameObjectInfo: ゲームオブジェクト情報</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetInteractableGameObjects&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">InteractableGameObjectInfo</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div>
 
@@ -138,6 +144,15 @@
 <div class="viewcode-block" id="get_latest_screenshot">
 <a class="viewcode-back" href="../../modules/api.html#polyqa.api.get_latest_screenshot">[ドキュメント]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_latest_screenshot</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ScreenshotFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    最新のスクリーンショットを取得します。</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ScreenshotFrame: フレーム番号と画像を含むスクリーンショット</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: スクリーンショットが存在しない場合</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">screenshot</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetLatestScreenshot&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">screenshot</span><span class="p">[</span><span class="s1">&#39;Data&#39;</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No screenshot&#39;</span><span class="p">)</span>
@@ -148,6 +163,18 @@
 <div class="viewcode-block" id="get_screenshot">
 <a class="viewcode-back" href="../../modules/api.html#polyqa.api.get_screenshot">[ドキュメント]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_screenshot</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    指定されたフレーム番号のスクリーンショットを取得します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        frame (int): 取得するフレーム番号</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Image.Image: スクリーンショット画像</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: スクリーンショットが存在しない場合</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">screenshot</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetScreenshot&#39;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">screenshot</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No screenshot&#39;</span><span class="p">)</span>
@@ -158,6 +185,12 @@
 <div class="viewcode-block" id="get_user_id">
 <a class="viewcode-back" href="../../modules/api.html#polyqa.api.get_user_id">[ドキュメント]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_user_id</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    現在のユーザーIDを取得します。</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: ライセンシーID/ユーザーID の形式の文字列</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">licensee_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetLicenseeId&#39;</span><span class="p">)</span>
     <span class="n">user_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetUserId&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">licensee_id</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s1">&#39;</span></div>
@@ -166,15 +199,41 @@
 <div class="viewcode-block" id="get_action_log">
 <a class="viewcode-back" href="../../modules/api.html#polyqa.api.get_action_log">[ドキュメント]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_action_log</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ActionLog</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    アクションログを取得します。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        start (Optional[datetime]): 取得開始日時。Noneの場合は全件取得。</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[ActionLog]: アクションログのリスト</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">start_time</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">start</span> <span class="k">else</span> <span class="kc">None</span>
     <span class="n">actions</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetActionLog&#39;</span><span class="p">,</span> <span class="n">start_time</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">ActionLog</span><span class="p">(</span><span class="n">action</span><span class="p">)</span> <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">actions</span><span class="p">]</span></div>
 
 
+<div class="viewcode-block" id="capture_screenshot">
+<a class="viewcode-back" href="../../modules/api.html#polyqa.api.capture_screenshot">[ドキュメント]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">capture_screenshot</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    スクリーンショットをキャプチャし、フレーム番号を返します。</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: キャプチャしたスクリーンショットのフレーム番号</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;CaptureScreenshot&#39;</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="get_available_commands">
 <a class="viewcode-back" href="../../modules/api.html#polyqa.api.get_available_commands">[ドキュメント]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_available_commands</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get list of available in-game commands&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    利用可能なゲーム内コマンドの一覧を取得します。</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[str]: コマンド名のリスト</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">commands</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetAvailableCommands&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">commands</span> <span class="k">if</span> <span class="n">commands</span> <span class="k">else</span> <span class="p">[]</span></div>
 
