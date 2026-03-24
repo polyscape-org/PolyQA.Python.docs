@@ -275,11 +275,15 @@ duration: スワイプの持続時間（秒）</p>
 <span class="sig-prename descclassname"><span class="pre">polyqa.</span></span><span class="sig-name descname"><span class="pre">timeout_override</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/polyqa.html#timeout_override"><span class="viewcode-link"><span class="pre">[ソース]</span></span></a><a class="headerlink" href="#polyqa.timeout_override" title="Link to this definition"></a></dt>
 <dd><p>オートプレイのタイムアウトを一時的に上書きします。
 withブロックを抜けると自動的にタイムアウトがクリアされます。</p>
-<p>使用例:
-&gt;&gt;&gt; with timeout_override(30):
-...     # ここでタイムアウトが30秒に設定される
-...     tap(&quot;button&quot;)
-... # withブロックを抜けると自動的にタイムアウトがクリアされる</p>
+<dl>
+<dt>使用例:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">timeout_override</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="c1"># ここでタイムアウトが30秒に設定される</span>
+<span class="gp">... </span>    <span class="n">tap</span><span class="p">(</span><span class="s2">&quot;button&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># withブロックを抜けると自動的にタイムアウトがクリアされる</span>
+</pre></div>
+</div>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">パラメータ<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>timeout_seconds</strong> (<em>int</em>) -- タイムアウト秒数</p>
