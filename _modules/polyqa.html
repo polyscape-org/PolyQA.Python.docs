@@ -283,10 +283,10 @@
 <span class="sd">    withブロックを抜けると自動的にタイムアウトがクリアされます。</span>
 
 <span class="sd">    使用例:</span>
-<span class="sd">    with timeout_override(30):</span>
-<span class="sd">        # ここでタイムアウトが30秒に設定される</span>
-<span class="sd">        tap(&quot;button&quot;)</span>
-<span class="sd">    # withブロックを抜けると自動的にタイムアウトがクリアされる</span>
+<span class="sd">        &gt;&gt;&gt; with timeout_override(30):</span>
+<span class="sd">        ...     # ここでタイムアウトが30秒に設定される</span>
+<span class="sd">        ...     tap(&quot;button&quot;)</span>
+<span class="sd">        ... # withブロックを抜けると自動的にタイムアウトがクリアされる</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        timeout_seconds (int): タイムアウト秒数</span>
