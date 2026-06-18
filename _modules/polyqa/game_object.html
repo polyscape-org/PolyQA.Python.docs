@@ -63,7 +63,6 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">モジュールコード</a></li>
-          <li class="breadcrumb-item"><a href="../polyqa.html">polyqa</a></li>
       <li class="breadcrumb-item active">polyqa.game_object</li>
       <li class="wy-breadcrumbs-aside">
       </li>
@@ -74,11 +73,11 @@
            <div itemprop="articleBody">
              
   <h1>polyqa.game_object のソースコード</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">polyqa</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">polyqa.process</span><span class="w"> </span><span class="kn">import</span> <span class="n">rpc</span>
+
 
 <div class="viewcode-block" id="UnityObject">
 <a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.UnityObject">[ドキュメント]</a>
@@ -102,8 +101,9 @@
 <span class="sd">        オブジェクトが破棄されるときに呼ばれるデストラクタ。</span>
 <span class="sd">        メモリリークを防ぐためにネイティブオブジェクトを破棄します。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;ReleaseObjectReference&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+        <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;ReleaseObjectReference&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
 </div>
+
 
 
 <div class="viewcode-block" id="GameObject">
@@ -116,7 +116,7 @@
 
 <div class="viewcode-block" id="GameObject.find">
 <a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.find">[ドキュメント]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;GameObject&#39;</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;GameObject&quot;</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        現在のゲームオブジェクト内で指定された名前またはパターンに一致する最初のゲームオブジェクトを検索します。</span>
 
@@ -131,11 +131,11 @@
 <span class="sd">            ValueError: nameもpatternも指定されていない場合</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;FindGameObject&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;FindGameObject&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">pattern</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;MatchGameObject&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+            <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;MatchGameObject&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;name or pattern must be specified&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;name or pattern must be specified&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">instance_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="n">GameObject</span><span class="p">(</span><span class="n">instance_id</span><span class="p">)</span></div>
@@ -143,7 +143,7 @@
 
 <div class="viewcode-block" id="GameObject.find_child">
 <a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.find_child">[ドキュメント]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;GameObject&#39;</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;GameObject&quot;</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        現在のゲームオブジェクト内で指定された名前またはパターンに一致する最初の子ゲームオブジェクトを検索します。</span>
 
@@ -158,11 +158,11 @@
 <span class="sd">            ValueError: nameもpatternも指定されていない場合</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;FindChildGameObject&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;FindChildGameObject&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">pattern</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;MatchChildGameObject&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+            <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;MatchChildGameObject&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;name or pattern must be specified&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;name or pattern must be specified&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">instance_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="n">GameObject</span><span class="p">(</span><span class="n">instance_id</span><span class="p">)</span></div>
@@ -170,7 +170,7 @@
 
 <div class="viewcode-block" id="GameObject.find_all">
 <a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.find_all">[ドキュメント]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="s1">&#39;GameObject&#39;</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="s2">&quot;GameObject&quot;</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        現在のゲームオブジェクト内で指定された名前またはパターンに一致するすべてのゲームオブジェクトを検索します。</span>
 
@@ -185,17 +185,17 @@
 <span class="sd">            ValueError: nameもpatternも指定されていない場合</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;FindGameObjects&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;FindGameObjects&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">pattern</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;MatchGameObjects&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+            <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;MatchGameObjects&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;name or pattern must be specified&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;name or pattern must be specified&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">GameObject</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="GameObject.find_all_children">
 <a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.find_all_children">[ドキュメント]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_children</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="s1">&#39;GameObject&#39;</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_children</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="s2">&quot;GameObject&quot;</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        現在のゲームオブジェクト内で指定された名前またはパターンに一致するすべての子ゲームオブジェクトを検索します。</span>
 
@@ -210,18 +210,18 @@
 <span class="sd">            ValueError: nameもpatternも指定されていない場合</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;FindChildGameObjects&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;FindChildGameObjects&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">pattern</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;MatchChildrenGameObjects&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+            <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;MatchChildrenGameObjects&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;name or pattern must be specified&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;name or pattern must be specified&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">GameObject</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="GameObject.get_component">
 <a class="viewcode-back" href="../../modules/game_object.html#polyqa.game_object.GameObject.get_component">[ドキュメント]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component_class</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Component&#39;</span><span class="p">]:</span>
-        <span class="nb">id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetComponent&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">component_class</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component_class</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;Component&quot;</span><span class="p">]:</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;GetComponent&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">component_class</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="n">Component</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span></div>
@@ -236,7 +236,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: ゲームオブジェクトのパス</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectPath&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;GetGameObjectPath&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GameObject.is_active">
@@ -248,7 +248,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: アクティブであればTrue、そうでなければFalse</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;IsGameObjectActive&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;IsGameObjectActive&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GameObject.text">
@@ -260,7 +260,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: ゲームオブジェクトに関連付けられたテキスト</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectText&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;GetGameObjectText&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GameObject.input_text">
@@ -284,7 +284,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: ゲームオブジェクトに関連付けられた画像名</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectImageName&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;GetGameObjectImageName&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GameObject.checkbox">
@@ -296,7 +296,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: チェックボックスがオンであればTrue、オフであればFalse</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectCheckboxValue&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;GetGameObjectCheckboxValue&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GameObject.tap">
@@ -305,8 +305,8 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ゲームオブジェクトをタップします。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectScreenPosition&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-        <span class="n">polyqa</span><span class="o">.</span><span class="n">tap</span><span class="p">((</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;GetGameObjectScreenPosition&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">polyqa</span><span class="o">.</span><span class="n">tap</span><span class="p">((</span><span class="n">v</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GameObject.swipe">
@@ -318,8 +318,8 @@
 <span class="sd">        Args:</span>
 <span class="sd">            **kwargs: スワイプのオプションパラメータ（方向ベクトルなど）</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectScreenPosition&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-        <span class="n">polyqa</span><span class="o">.</span><span class="n">swipe</span><span class="p">((</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;GetGameObjectScreenPosition&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">polyqa</span><span class="o">.</span><span class="n">swipe</span><span class="p">((</span><span class="n">v</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GameObject.screen_position">
@@ -331,9 +331,10 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            tuple[float, float]: 画面上の(x, y)座標</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetGameObjectScreenPosition&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span></div>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;GetGameObjectScreenPosition&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span></div>
 </div>
+
 
 
 <div class="viewcode-block" id="Component">
@@ -353,7 +354,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: コンポーネントが有効であればTrue、無効であればFalse</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;IsEnabledComponent&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;IsEnabledComponent&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Component.__getattr__">
@@ -384,7 +385,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: プロパティの値</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;GetComponentValue&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">property_name</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;GetComponentValue&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">property_name</span><span class="p">)</span></div>
 </div>
 
 
@@ -401,10 +402,11 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        GameObject: 見つかったゲームオブジェクト。見つからない場合はNone。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;FindGameObject&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">instance_id</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;FindGameObject&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">instance_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="k">return</span> <span class="n">GameObject</span><span class="p">(</span><span class="n">instance_id</span><span class="p">)</span></div>
+
 
 
 <div class="viewcode-block" id="find_all">
@@ -419,7 +421,7 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        list[GameObject]: 見つかったゲームオブジェクトのリスト</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;FindGameObjects&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">ids</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;FindGameObjects&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">GameObject</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">]</span></div>
 
 </pre></div>
